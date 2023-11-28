@@ -30,7 +30,7 @@
             <img
         {{!-- you have to put image src such that it is accessible from internet and not from your directory --}}
             {{!-- when uploading online, use https://hostname/{{data.photo}} --}}
-              src="../uploads/{{data.photo}}" 
+              src="http://localhost:4002/{{data.photo}}" 
               class="img-thumbnail" 
               style="width: 50%; height: 200px;"
               alt="Loading"
@@ -74,7 +74,7 @@
           </tr>
         </table>
         {{!-- you have to put image src such that it is accessible from internet and not from your directory --}}
-    <img src="../public/sign.png" alt="pic sign">
+    <img src="http://localhost:4002/sign.png" alt="pic sign">
   </body>
   <script>
     const rand = document.getElementById("rand");

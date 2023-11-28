@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member's Registration</title>
+    <%- include('./partials/css') %>
+  </head>
+  <body>
+    <div class="alert alert-danger text-center" role="alert">
+    You can not edit the form once it is filled
+    </div>
+    <h1 class="text-center mt-3">Member <%= size %> Registration</h1>
+    <% if (locals.error) { %>
+        <div class="alert alert-warning" role="alert">
+            <%= locals.error %>>
+          </div>
+    <% } %>
+    <div class="container shadow-lg p-5 mt-4" style="width: 600px">
+      <form
+        action="/form/response/member"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="disabledTextInput"
+            name="leaderID"
+            hidden
+            value=<%= leaderID %>
+          />
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Member's name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact No.:</label>
+          <input type="tel" class="form-control" id="contact" name="contact" pattern="[0-9]{10}" placeholder="9998887771" />
+        </div>
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="gender"
+          >
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHERS">Others</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="plan" class="form-label">Plan:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="plan"
+          >
+            <option value="STARNIGHT">
+              Starnight + Stay (550/- per person)
+            </option>
+            <option value="STAY">Stay (150/- per person)</option>
+            <option value="NIL" selected>None of the above (NIL)</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="file" class="form-control" id="photo" name="photo" />
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Another Team Member</button>
+        <button type="submit" class="btn btn-primary" formaction="/price-page/<%= locals.leaderID %>">Proceed To Pay</button>
+      </form>
+    </div>
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

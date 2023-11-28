@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <%- include('./partials/css') %>
+  </head>
+  <body>
+    
+    <div class="alert alert-danger text-center" role="alert">
+      You can not edit the form once it is filled
+    </div>
+    <h1 class="text-center mt-3">Leader Registration</h1>
+    <% if (locals.error) { %>
+        <div class="alert alert-warning" role="alert">
+            <%= locals.error %>
+          </div>
+    <% } %>
+    <div class="container shadow-lg p-5 mt-4" style="width: 600px">
+      <form action="/form/response" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="username" class="form-label">Leader's name:</label>
+          <input required
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="college" class="form-label">College:</label>
+          <input required type="text" class="form-control" id="college" name="college" />
+        </div>
+        <div class="mb-3">
+          <label for="teamName" class="form-label">Team Name:</label>
+          <input required type="text" class="form-control" id="teamName" name="teamName" />
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact No.:</label>
+          <input required type="tel" class="form-control" id="contact" name="contact" pattern="[0-9]{10}" placeholder="9998887771" />
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Arrival Date:</label>
+          <input required type="date" class="form-control" id="date" name="date" min="2023-10-10" max="2023-10-31" />
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Arrival Time:</label>
+          <input required type="time" class="form-control" id="time" name="time" />
+        </div>
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="gender"
+          >
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHERS">Others</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="plan" class="form-label">Plan:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="plan"
+          >
+            <option value="STARNIGHT">
+              Starnight + Stay (550/- per person)
+            </option>
+            <option value="STAY">Stay (150/- per person)</option>
+            <option value="NIL" selected>None of the above (NIL)</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="event" class="form-label">Event:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="event"
+          >
+            <option value="Group Singing" selected>Group Singing</option>
+            <option value="Mime">Mime</option>
+            <option value="Adwars">Adwars</option>
+            <option value="Mix N Match">Mix N Match</option>
+            <option value="Chorenite">Chorenite</option>
+            <option value="Ekanki">Ekanki</option>
+            <option value="Libas">Libas</option>
+            <option value="Mono Act">Mono Act</option>
+            <option value="Duet Dance">Duet Dance</option>
+            <option value="Rap Battle">Rap Battle</option>
+            <option value="Beyond Asylum">Beyond Asylum</option>
+            <option value="Best of 2K20">Best of 2K20</option>
+            <option value="Battle of Bands">Battle of Bands</option>
+            <option value="Nukkad">Nukkad</option>
+            <option value="Groove Armada">Groove Armada</option>
+            <option value="Folk Dance">Folk Dance</option>
+            <option value="Instrumental Solo">Instrumental Solo</option>
+            <option value="Solo Dance">Solo Dance</option>
+            <option value="Duet Singing">Duet Singing</option>
+            <option value="Battle Street">Battle Street</option>
+            <option value="Wardrobe Wars">Wardrobe Wars</option>
+            <option value="Cineverse">Cineverse</option>
+            <option value="Campus Diaries">Campus Diaries</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="file" class="form-control" id="photo" name="photo" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Move To Payment / Team Member Addition</button>
+      </form>
+    </div>
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <%- include('./partials/css') %>
+</head> 
+<body>
+    <div class="alert alert-danger text-center" role="alert">
+        If your amount is &#x20B9;0/- then upload your profile picture.
+      </div>
+    <h1 class="text-center mt-3">Amount to be paid: &#x20B9;<%= locals.amount %>/-</h1>
+    <div class="container shadow-lg p-5 mt-4" style="max-width: 600px;">
+        <form
+        action="/price-page/confirmation/<%= locals.leaderID %>"
+        method="POST"
+        enctype="multipart/form-data"
+        >
+        <div class="mb-3">
+            <input
+            type="text"
+            class="form-control"
+            id="disabledTextInput"
+            name="leaderID"
+            hidden
+            value=<%= locals.leaderID%>
+            />
+            <div class="d-flex justify-content-center text-center">
+                <div>
+                    <h3>Scan To Pay:</h3>
+                    <img src="../qr.jpg" class="" alt="Loading QR code..." style="width: 300px;"/>
+                </div>
+            </div>
+            <br><br><br>
+            <label for="photo" class="form-label">Upload Payment Screenshot</label>
+            <input type="file" class="form-control" id="photo" name="photo" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<%- include('./partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ID Cards</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      tr td:last-child {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    {{#ifCond users '!==' UNDEFINED}} {{#each users as |user|}}
+    <div class="container">
+      {{user}}
+      <br /><br /><br />
+      <div class="d-flex justify-content-between" style="gap: 10px;">
+        <div class="left" style="flex-grow: 1;">These are the Generated IDs for your team. I hope it is good</div>
+        <div class="right" style="flex-grow: 1;">
+          <img
+            src="../uploads/1697113551086-bootstrap.jpeg"
+            class="img-thumbnail"
+            style="width: 100%; height: 200px"
+            alt="Loading"
+          />
+        </div>
+      </div>
+      <br /><br /><br />
+      <table class="table">
+        <tr>
+          <td>Fullname</td>
+          <td>{{user.username}}</td>
+        </tr>
+        <tr>
+          <td>College</td>
+          <td>{{this.college}}</td>
+        </tr>
+        <tr>
+          <td>Date Of Arrival</td>
+          <td>{{this.date}}</td>
+        </tr>
+        <tr>
+          <td>Time of Arrival</td>
+          <td>{{this.time}}</td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>{{this.gender}}</td>
+        </tr>
+        <tr>
+          <td>Plan</td>
+          <td>{{this.plan}}</td>
+        </tr>
+        <tr>
+          <td>Event</td>
+          <td>{{this.event}}</td>
+        </tr>
+      </table>
+      <img
+            src="../uploads/1697113551086-bootstrap.jpeg"
+            class="img"
+            style="width: 100%; height: 200px"
+            alt="Loading"
+          />
+      <br /><br /><br />
+      {{/each}} {{/ifCond}}
+    </div>
+  </body>
+</html>

@@ -29,9 +29,9 @@ async function uploadFile(filePath, leader, e) {
         body: fs.createReadStream(filePath),
       },
     });
-    console.log(res.data);
-    const url = await publicURL(res.data.id);
-    return url;
+    // console.log(res.data); kind,id,name,mimeType
+    const urls = await publicURL(res.data.id);
+    return urls;
   } catch (error) {
     console.log(error);
   }
@@ -49,8 +49,8 @@ async function publicURL(fileId) {
       fileId,
       fields: "webViewLink, webContentLink",
     });
-    console.log(result.data);
-    return result.data.webViewLink;
+    // console.log(result.data); both fields only
+    return result.data;
   } catch (error) {}
 }
 

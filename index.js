@@ -17,6 +17,10 @@ app.set("views",path.resolve("./views"));
 app.use("/price-page",priceRouter);
 app.use("/form",formRouter);
 
+app.get("*",(req,res,next) => {
+    return res.status(404).render("404Page");
+})
+
 app.listen(PORT, () => {
     console.log(`Server running at PORT:${PORT}`);
 });

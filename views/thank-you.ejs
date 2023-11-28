@@ -11,6 +11,29 @@
     <h1 class="text-center">Pdf Generated Successfully and sent to Your drive</h1>
     <h4 class="text-center">With Love Zolo-Ryan</h4>
     <p class="text-center">If you like what I created please star my repository :)</p>
+    <h2>Here are the created links</h2>
+    <% if (locals.links) { %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">ID Card View Link</th>
+            <th scope="col">ID Card Download Link</th>
+          </tr>
+        </thead>
+        <tbody>
+      <% locals.links.forEach((link,i) => { %>
+        <tr>
+          <th scope="row"> <%= i+1 %> </th>
+          <td> <%= link.username %> </td>
+          <td> <a href="<%= link.link.webViewLink %>" target="_blank">View Link</a> </td>
+          <td> <a href="<%= link.link.webContentLink %>" target="_blank">Download Link</a> </td>
+        </tr>
+      <% }) %>
+    <% }else{ %>
+      <h3>Uh-oh. Some error occured!</h3>
+    <% } %>
     <%- include('./partials/scripts') %>
   </body>
 </html>

@@ -86,11 +86,12 @@ router
     });
     const leader = await User.findOne({ _id: leaderID });
     const array = await User.find({ leaderID });
+    let links = [];
+    let send;
     array.push(leader);
-    const links = [];
     (async function(){
       try {
-        array.forEach( async (e) => {
+        links = array.map( async (e,i) => {
           const browser = await puppeteer.launch({
             args: [
               "--disable-setuid-sandbox",
@@ -109,18 +110,22 @@ router
             format: "A3",
             printBackground: true
           })
-          const link = await uploadFile.uploadFile(pathF,leader,e);
-          console.log(link)
+          const data = await uploadFile.uploadFile(pathF,leader,e);
+          // console.log(data)
+          const username = e.username;
           await browser.close();
-        });
-
+          return {username, link: data};
+        })
         console.log("A team has registered: ",leader.teamName);
+        send = await Promise.all(links);
+        // console.log(send);
+        return res.render("thank-you",{links: send});
+        // console.log(send); all promises
       } catch (error) {
         console.log(error);
+        return res.render("thank-you",{links: null});
       }
     })();
-    
-    return res.render("thank-you");
   });
 
 function stringToPrice(string) {

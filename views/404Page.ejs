@@ -7,13 +7,8 @@
     <%- include('./partials/css') %>
 </head>
 <body>
-    <% if (locals.type) { %>
-        <h1 class="text-center">Welcome to 404</h1>
-        <p>The path you requested doesn't exist, how about you <a href="/form">go here</a> instead.</p>
-    <% }else{ %>
-        <h1 class="text-center">Welcome To Root path</h1>
-        <p><a href="/form">Click here</a> to see how this project works.</p>
-    <% } %>
+    <h1 class="text-center">Welcome to 404</h1>
+    <p>The path you requested doesn't exist, how about you <a href="/form">go here</a> instead.</p>
     <%- include('./partials/scripts') %>
 </body>
 </html>

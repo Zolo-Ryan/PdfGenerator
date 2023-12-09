@@ -12,7 +12,8 @@
     <h4 class="text-center">With Love Zolo-Ryan</h4>
     <p class="text-center">If you like what I created please star my repository :)</p>
     <h2>Here are the created links</h2>
-    <% if (locals.links) { %>
+    <h5>If Drive credentials are not set as told in Repo then the links won't work</h5>
+    <% if (locals.username_Links_Finally) { %>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -23,12 +24,12 @@
           </tr>
         </thead>
         <tbody>
-      <% locals.links.forEach((link,i) => { %>
+      <% locals.username_Links_Finally.forEach((link,i) => { %>
         <tr>
           <th scope="row"> <%= i+1 %> </th>
           <td> <%= link.username %> </td>
-          <td> <a href="<%= link.link.webViewLink %>" target="_blank">View Link</a> </td>
-          <td> <a href="<%= link.link.webContentLink %>" target="_blank">Download Link</a> </td>
+          <td> <a href="<%= link.link?.webViewLink %>" target="_blank">View Link</a> </td>
+          <td> <a href="<%= link.link?.webContentLink %>" target="_blank">Download Link</a> </td>
         </tr>
       <% }) %>
     <% }else{ %>

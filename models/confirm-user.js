@@ -8,14 +8,7 @@ const confirmSchema = new Schema({
     photo: {
         type: String,
         required: true,
-    },
-    ids: [
-        {
-            memberPdf:{
-                type: String,
-            }
-        }
-    ]
+    }
 });
 
 const Confirm = model("confirm",confirmSchema);

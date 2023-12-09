@@ -6,7 +6,7 @@ const hbs = require("handlebars");
 const router = require("express").Router();
 const {upload} = require("../utils/multerUtil");
 const multer = require("multer");
-const uploadFile = require("../utils/fileUploadingOnGoogleDrive");
+const {uploadFile} = require("../utils/fileUploadingOnGoogleDrive");
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
         cb(null,"./uploads/paymentSS");
@@ -86,12 +86,11 @@ router
     });
     const leader = await User.findOne({ _id: leaderID });
     const array = await User.find({ leaderID });
-    let links = [];
-    let send;
+    let sendData = [];
     array.push(leader);
     (async function(){
       try {
-        links = array.map( async (e,i) => {
+        username_Links = array.map( async (e,i) => {
           const browser = await puppeteer.launch({
             args: [
               "--disable-setuid-sandbox",
@@ -110,20 +109,20 @@ router
             format: "A3",
             printBackground: true
           })
-          const data = await uploadFile.uploadFile(pathF,leader,e);
-          // console.log(data)
+          const view_Download_Link = await uploadFile(pathF,leader,e);
+          // console.log(view_Download_Link)
           const username = e.username;
           await browser.close();
-          return {username, link: data};
+          return {username, link: view_Download_Link};
         })
         console.log("A team has registered: ",leader.teamName);
-        send = await Promise.all(links);
-        // console.log(send);
-        return res.render("thank-you",{links: send});
-        // console.log(send); all promises
+        sendData = await Promise.all(username_Links);
+        // console.log(sendData);
+        return res.render("thank-you",{username_Links_Finally: sendData});
+        // console.log(sendData); all promises
       } catch (error) {
         console.log(error);
-        return res.render("thank-you",{links: null});
+        return res.render("thank-you",{username_Links_Finally: null});
       }
     })();
   });

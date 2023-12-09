@@ -10,7 +10,7 @@
     <div class="alert alert-danger text-center" role="alert">
     You can not edit the form once it is filled
     </div>
-    <h1 class="text-center mt-3">Member <%= size %> Registration</h1>
+    <h1 class="text-center mt-3">Member <%= locals.size %> Registration</h1>
     <% if (locals.error) { %>
         <div class="alert alert-warning" role="alert">
             <%= locals.error %>>

@@ -16,9 +16,12 @@ app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 app.use("/price-page",priceRouter);
 app.use("/form",formRouter);
+app.use("/",(req,res) => {
+    return res.render("404Page",{type: false});
+});
 
 app.get("*",(req,res,next) => {
-    return res.status(404).render("404Page");
+    return res.status(404).render("404Page",{type: true});
 })
 
 app.listen(PORT, () => {
